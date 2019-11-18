@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<ul>
+    <div>  {{ question.question_text }} </div>
+    <div>Opowiedzi:
+        {% if error_message %}
+        <div class="error">{{error_message}}</div>
+        {% endif %}
+        {% if question.choice_set.all %}
+        <form action="{% url 'polls:vote' question.id %}" method="post">
+            {% csrf_token %}
+
+        {% for choice in question.choice_set.all %}
+         <input type="radio" name = "choice" id="choice{{ forloop.counter}}" value="{{choice.id}}">
+            <label for="choice{{forloop.counter }}">{{ choice.choice_text }}</label>
+        {% endfor %}
+            <input type="submit" value="Vote">
+        </form>
+        {% else %}
+        <p>Brak wybory</p>
+        {% endif %}
+    </div>
+
+
+    <a href="{% url 'polls:list' %}">Lista</a>
+
+</ul>
+{% endblock %}
