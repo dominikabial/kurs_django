@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load bootstrap4 %}
+{% block content %}
+<div class="row">
+    <div class="col-md-2">Tytuł</div>
+    <div class="col-md-4">{{book.title}}</div>
+
+</div>
+<div class="row">
+    <div class="col-md-2">Autor</div>
+    <div class="col-md-4">{{book.author}}</div>
+
+</div>
+
+<form action="" method="POST" id="commenform">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% buttons %}
+        <button type="submit" class="btn btn-primary">Submit</button>
+    {% endbuttons %}
+</form>
+{% endblock %}
