@@ -13,11 +13,11 @@
 
 </div>
 
-<form action="" method="POST" id="commenform">
+<form action="{url 'books:comment' book.id %}" method="POST" id="commenform">
     {% csrf_token %}
     {% bootstrap_form form %}
-    {% buttons %}
-        <button type="submit" class="btn btn-primary">Submit</button>
-    {% endbuttons %}
+    <button type="submit" class="commenform">Dodaj</button>
 </form>
+
+
 {% endblock %}
