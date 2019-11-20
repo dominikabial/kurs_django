@@ -13,11 +13,21 @@
 
 </div>
 
-<form action="{url 'books:comment' book.id %}" method="POST" id="commenform">
-    {% csrf_token %}
-    {% bootstrap_form form %}
-    <button type="submit" class="commenform">Dodaj</button>
-</form>
+
+<div class="row">Komentarze:</div>
+
+    {% for comment in book.comment_set.all %}
+<div class="row">
+    <div class="col-md-2 font-weight-bold">{{comment.name}}:</div>
+    <div class="cold-md-10">{{comment.text}}</div>
+</div>
+    {% endfor %}
+
+<form action="{% url 'books:comment' book.id %}" method="POST" id="commentform">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <button type="submit" form="commentform">Dodaj</button>
+        </form>
 
 
 {% endblock %}

@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+
+from django.core.checks import messages
 from django.utils.translation import gettext_lazy as _
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -32,6 +34,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'suit',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,7 +45,9 @@ INSTALLED_APPS = [
     #'polls',
     'polls.apps.PollsConfig',
     'books.apps.BooksConfig',
-    'bootstrap4'
+    'bootstrap4',
+    'rest_framework',
+    'snippets.apps.SnippetsConfig',
 ]
 
 MIDDLEWARE = [
@@ -54,6 +59,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'books.middleware.SimpleMiddleware',
+
 ]
 
 ROOT_URLCONF = 'mysite.urls'
@@ -69,6 +76,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'books.context_processors.books_context_processor',
+                'books.context_processors.info_admin_panel'
             ],
         },
     },
@@ -140,3 +149,17 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
 ]
+
+CACHES = {
+    "default" : {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/1",
+        "OPTION": {
+            "CLIENT_CLASS": "django_redis.client.DeefaultClient",
+        },
+        "KEY_PREFIX": "Test"
+    }
+}
+
+
+LOGIN_REDIRECT_URL='/books/'

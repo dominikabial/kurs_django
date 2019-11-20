@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+
+{{ message_admins_panel }}
+
 {% block content %}
   <h1>Tytuły książek</h1>
   {% for book in books %}
@@ -25,5 +28,8 @@
             <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
         {% endif %}
     </span>
+</div>
+<div class="bottom">
+    <a href="{% url 'books:report' %}?page={{page_obj.number}}">pobierz</a>
 </div>
 {% endblock %}

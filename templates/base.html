@@ -83,6 +83,21 @@
 
   <div class="album py-5 bg-light">
     <div class="container">
+        <div class = 'row'>
+          {% block important %}
+          {% if message_admins_panel %}
+          {{ message_admins_panel }}
+          {% endif %}
+          {% endblock %}
+            {% if messages %}
+
+            {% for message in messages %}
+             <div class="alert alert-{% if message.tags %} {{ message.tags }}{% endif %}" col-md-12 role="alert">{{ message }}
+             </div>
+    {% endfor %}
+
+{% endif %}
+        </div>
 
       <div class="row">
         <div class="col-md-12">

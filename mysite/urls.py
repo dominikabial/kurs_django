@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.contrib.auth.views import LoginView
 from django.urls import path, include
 from django.views import generic
 from django.conf import settings
@@ -26,5 +27,10 @@ urlpatterns = [
     path("", generic.TemplateView.as_view(template_name='index.html'), name='index'),
     path('polls/', include('polls.urls')),
     path('books/', include('books.urls')),
+    path('accounts/',  include('django.contrib.auth.urls')),
+    path('api/', include('snippets.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += [
+    path('api-auth', include('rest_framework.urls'))
+]

@@ -16,7 +16,6 @@ class PublisheedBookManager(models.Manager):
         return super().get_queryset().filter(pub_date__lt=timezone.now())
 
 
-
 class Question(models.Model):
     question_text = models.CharField(max_length=300,verbose_name=_("question text"))
     pub_date = models.DateTimeField(verbose_name=_("publication date"))
@@ -40,6 +39,8 @@ class Question(models.Model):
 
     class Meta:
         verbose_name = _("Question")
+
+
 
 
 

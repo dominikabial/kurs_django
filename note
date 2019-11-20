@@ -79,3 +79,8 @@ def vote(request, question_id):
         return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))  # topla argument id z przecinkiem
 
     # return HttpResponse(f"glosuje w pytaniu: {question_id}")
+
+
+https://github.com/dmajkic/redis/downloads >> redis_server
+
+https://djangotricks.blogspot.com/2019/02/how-to-export-data-to-xlsx-files.html >excel
